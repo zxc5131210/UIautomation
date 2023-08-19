@@ -26,4 +26,4 @@ drop_ele = driver.find_element(AppiumBy.XPATH , '//android.widget.TextView[@cont
 # gesture.drag_drop(drag_ele, drop_ele, x=0, y=-300)
 gesture.tap(drag_ele)
 time.sleep(3)
-gesture.double_tap(drag_ele)
+# gesture.double_tap(drag_ele)
