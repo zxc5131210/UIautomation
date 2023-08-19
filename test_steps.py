@@ -4,6 +4,7 @@ import time
 import config
 from gesture import Gesture
 from appium.webdriver.common.touch_action import TouchAction
+from selenium.webdriver.common.by import By
 
 # Step 1 : Create "Desired Capabilities"
 desired_caps = {}
