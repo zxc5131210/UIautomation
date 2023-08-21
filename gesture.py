@@ -37,6 +37,14 @@ class Gesture:
         self.touch_action.long_press(drag_element,duration=5000).move_to(drop_element).release().perform()
         self.logger.info('drag_drop complete.')
         pass
+    def drag_drop_bylocate(
+        self,
+        drag_element,
+        x,
+        y
+        )->None:
+        self.touch_action.long_press(el=drag_element,duration=5000).move_to(x=x,y=y).release().perform()
+
     def double_tap(self, element) -> None:
         self.touch_action.double_tap(element).perform()
         self.logger.debug('tap complete.')
