@@ -5,6 +5,8 @@ from appium.webdriver.common.touch_action import TouchAction
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 import logging
+import os
+from appium import webdriver
 
 class Gesture:
     def __init__(self, driver) -> None:
@@ -23,18 +25,12 @@ class Gesture:
         self.touch_action.tap(element).perform()
         self.logger.debug('tap complete.')
         pass
-    def drag_drop(
+    def drag_drop_byelement(
         self,
         drag_element,
         drop_element,
-        # x,
-        # y 
         )-> None:
-        # self.touch_action.long_press(el=drag_element, duration=5000).move_to(drop_element, x, y).release().perform()
-        # self.touch_action.long_press(el=drag_element, duration=2000).perform()
-        # time.sleep(2)
-        # self.touch_action.move_to(el=drop_element, x=x, y=y).release().perform()
-        self.touch_action.long_press(drag_element,duration=5000).move_to(drop_element).release().perform()
+        self.touch_action.long_press(el=drag_element,duration=5000).move_to(drop_element).release().perform()
         self.logger.info('drag_drop complete.')
         pass
     def drag_drop_bylocate(
@@ -43,10 +39,11 @@ class Gesture:
         x,
         y
         )->None:
-        self.touch_action.long_press(el=drag_element,duration=5000).move_to(x=x,y=y).release().perform()
+        self.touch_action.long_press(el=drag_element,duration=5000).move_to(x=x, y=y).release().perform()
+
 
     def double_tap(self, element) -> None:
-        self.touch_action.double_tap(element).perform()
+        self.tap(element).tap(element).perform()
         self.logger.debug('tap complete.')
         pass
     def keyboard(self) -> None:
@@ -63,14 +60,7 @@ class Gesture:
         pass
     def longpress(self) -> None:
         pass
-
-    def is_element_present(self,drag_elemnet)->None:
-        self.driver.implicitly_wait(0)
-        try:
-            self.driver.find_element(drag_elemnet)
-            self.logger.info('The %d is present',drag_elemnet)
-        except Exception:
-            self.logger.info('The %d is not be found',drag_elemnet)
+    
     def quit_driver(self):
         logging.info("Quit driver")
         self.driver.quit()
@@ -78,5 +68,5 @@ class Gesture:
 
     def get_screenshot(self,filename)->None:
         nowTime = time.strftime("%Y%m%d.%H.%M.%S")
-        self.driver.get_screenshot_as_file(filename+"_%s.png" % nowTime)
+        self.driver.save_screenshot(filename+"_%s.png" % nowTime)
         pass
