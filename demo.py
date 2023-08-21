@@ -5,6 +5,9 @@ import time
 import config
 from gesture import Gesture
 from selenium.webdriver.common.by import By
+from logger import Logger
+
+logger=Logger()
 
 # Step 1 : Create "Desired Capabilities"
 desired_caps = {}
@@ -28,16 +31,37 @@ driver.swipe(start_x, start_y, end_x, end_y, duration=500)
 place=(end_x,end_y)
 
 # drag and drop demo
-drag_ele = driver.find_element(AppiumBy.XPATH,'	//android.widget.TextView[@content-desc="Phone"]')
-drop_ele = driver.find_element(AppiumBy.XPATH , '//android.widget.TextView[@content-desc="Calendar"]')
-gesture.drag_drop(drag_ele, drop_ele)
-# gesture.tap(drag_ele)
-time.sleep(3)
-# gesture.double_tap(drag_ele)
+try:
+    drag_ele = driver.find_element(AppiumBy.XPATH,'	//android.widget.TextView[@content-desc="Phone"]')
+    drop_ele = driver.find_element(AppiumBy.XPATH , '//android.widget.TextView[@content-desc="Calendar"]')
+    gesture.drag_drop_byelement(drag_ele, drop_ele)
+    time.sleep(3)
+    logger.debug(f'drag {drag_ele} on desktop success')
 
-"""verify the app is on the desktop or not"""
-# gesture.is_element_present(drag_ele)
+except :
+    logger.debug(f'drag {drag_ele} is Fail')
+
+'''verify App is on the desktop'''
+try:
+    driver.find_element(AppiumBy.XPATH,'//android.widget.TextView[@content-desc="Phone"]')
+    logger.debug(f'{drag_ele} is on desktop')
+except:
+    logger.debug(f'{drag_ele} is not on desktop')
 
 '''move the app form the first view to the second view'''
-
+drag_ele = driver.find_element(AppiumBy.XPATH,'	//android.widget.TextView[@content-desc="Phone"]')
 gesture.drag_drop_bylocate(drag_ele,1068,832)
+
+'''verify the app is on second view'''
+try:
+    driver.find_element(AppiumBy.ID,'com.google.android.apps.nexuslauncher:id/date')
+    logger.debug('This is desktop view')
+    start_x = 992
+    start_y = 954
+    end_x = 50
+    end_y = 954
+    driver.swipe(start_x, start_y, end_x, end_y, duration=500)
+    place=(end_x,end_y)
+
+except:
+    logger.debug('This is the second view')
