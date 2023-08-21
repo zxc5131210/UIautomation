@@ -70,3 +70,18 @@ class Gesture:
         nowTime = time.strftime("%Y%m%d.%H.%M.%S")
         self.driver.save_screenshot(filename+"_%s.png" % nowTime)
         pass
+
+    def swipe_left(self):
+        start_x = 992
+        start_y = 954
+        end_x = 50
+        end_y = 954
+        self.driver.swipe(start_x, start_y, end_x, end_y, duration=500)
+        place=(end_x,end_y)
+
+    def swipe_up(self):
+        start_x = 523
+        start_y = 1560
+        end_x = 481
+        end_y = 229
+        self.driver.swipe(start_x, start_y, end_x, end_y, duration=500)

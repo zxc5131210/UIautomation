@@ -23,12 +23,7 @@ driver = webdriver.Remote(f'http://{config.host}:{config.port}/wd/hub', desired_
 gesture = Gesture(driver=driver)
 
 """swipe to open the all apps view"""
-start_x = 523
-start_y = 1560
-end_x = 481
-end_y = 229
-driver.swipe(start_x, start_y, end_x, end_y, duration=500)
-place=(end_x,end_y)
+gesture.swipe_up()
 
 # drag and drop demo
 try:
@@ -52,16 +47,13 @@ except:
 drag_ele = driver.find_element(AppiumBy.XPATH,'	//android.widget.TextView[@content-desc="Phone"]')
 gesture.drag_drop_bylocate(drag_ele,1068,832)
 
-'''verify the app is on second view'''
+'''verify the app is on second view or not'''
 try:
     driver.find_element(AppiumBy.ID,'com.google.android.apps.nexuslauncher:id/date')
     logger.debug('This is desktop view')
-    start_x = 992
-    start_y = 954
-    end_x = 50
-    end_y = 954
-    driver.swipe(start_x, start_y, end_x, end_y, duration=500)
-    place=(end_x,end_y)
+
+    '''If it is homepage , change to second view'''
+    gesture.swipe_left()
 
 except:
     logger.debug('This is the second view')
