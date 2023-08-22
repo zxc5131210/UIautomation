@@ -1,11 +1,10 @@
 """Gesture Class."""
 import time
+import os
 from logger import Logger
 from appium.webdriver.common.touch_action import TouchAction
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
-import logging
-import os
 from appium import webdriver
 
 class Gesture:
@@ -52,7 +51,9 @@ class Gesture:
         pass
     def allapps_btn(self) -> None:
         pass
-    def screenshot(self) -> None:
+    def screenshot(self,filename) -> None:
+        nowTime = time.strftime("%Y%m%d.%H.%M.%S")
+        self.driver.save_screenshot(filename+"_%s.png" % nowTime)
         pass
     def swipe(self) -> None:
         pass
@@ -62,13 +63,8 @@ class Gesture:
         pass
     
     def quit_driver(self):
-        logging.info("Quit driver")
+        Logger.debug("Quit driver")
         self.driver.quit()
-        pass
-
-    def get_screenshot(self,filename)->None:
-        nowTime = time.strftime("%Y%m%d.%H.%M.%S")
-        self.driver.save_screenshot(filename+"_%s.png" % nowTime)
         pass
 
     def swipe_left(self):
