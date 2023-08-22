@@ -6,6 +6,7 @@ import config
 from gesture import Gesture
 from selenium.webdriver.common.by import By
 from logger import Logger
+from event_generator import EventGen
 
 logger=Logger()
 
@@ -21,6 +22,8 @@ driver = webdriver.Remote(f'http://{config.host}:{config.port}/wd/hub', desired_
 
 #Step 3 : Create "gesture automation flow"
 gesture = Gesture(driver=driver)
+event_gen = EventGen()
+event_gen.generate_event(json_path='./motion_flow.json', driver=driver)
 
 """swipe to open the all apps view"""
 gesture.swipe_up()

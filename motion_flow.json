@@ -1,0 +1,21 @@
+{
+    "step":[
+        {
+            "squence":1,
+            "element":"//android.widget.TextView[@content-desc=\"Chrome\"]",
+            "gesture":"screenshot",
+            "args":["ss1.png"]
+        },
+        {
+            "squence":2,
+            "element":"//android.widget.TextView[@content-desc=\"Chrome\"]",
+            "gesture":"tap"
+        },
+        {
+            "squence":3,
+            "element":"//android.widget.TextView[@content-desc=\"Chrome\"]",
+            "gesture":"screenshot",
+            "args":["ss2.png"]
+        }
+    ]
+}

@@ -25,7 +25,7 @@ class Gesture:
         self.touch_action.tap(element).perform()
         self.logger.debug('tap complete.')
         pass
-    def drag_drop_byelement(
+    def swipe_up(
         self,
         drag_element,
         drop_element,
