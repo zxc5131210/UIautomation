@@ -51,7 +51,7 @@ gesture.drag_drop_bylocate(drag_ele,1068,832)
 try:
     driver.find_element(AppiumBy.ID,'com.google.android.apps.nexuslauncher:id/date')
     logger.debug('This is desktop view')
-
+    
     '''If it is homepage , change to second view'''
     gesture.swipe_left()
 
